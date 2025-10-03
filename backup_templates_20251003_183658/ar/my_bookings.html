@@ -1,0 +1,10 @@
+﻿{% extends "ar/base.html" %}
+{% block title %}My Bookings{% endblock %}
+{% block content %}
+  <h2>ط­ط¬ظˆط²ط§طھظٹ</h2>
+  <ul>
+    {% for bk in bookings %}
+      <li>{{ bk.book.title }} â€” ط§ظ„ط­ط§ظ„ط©: {{ bk.status }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

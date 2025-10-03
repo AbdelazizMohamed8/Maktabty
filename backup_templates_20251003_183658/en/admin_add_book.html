@@ -1,0 +1,11 @@
+﻿{% extends "en/base.html" %}
+{% block title %}Add Book{% endblock %}
+{% block content %}
+  <h2>ط¥ط¶ط§ظپط© ظƒطھط§ط¨</h2>
+  <form method='post'>
+    <label>ط§ظ„ط¹ظ†ظˆط§ظ†: <input name='title' required></label><br><br>
+    <label>ط§ظ„ظ…ط¤ظ„ظپ: <input name='author'></label><br><br>
+    <label>ط§ظ„ظ†ط³ط®: <input name='copies' type='number' value='1' min='1'></label><br><br>
+    <button type='submit'>ط£ط¶ظپ</button>
+  </form>
+{% endblock %}

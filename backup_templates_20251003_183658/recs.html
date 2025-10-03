@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Recommended Books</h2>
+<ul>
+    {% for rec in recs %}
+        <li>{{ rec.title }} by {{ rec.author }}</li>
+    {% else %}
+        <li>No recommendations available right now.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

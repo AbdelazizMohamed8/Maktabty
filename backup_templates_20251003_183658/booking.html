@@ -1,0 +1,17 @@
+<!-- templates/booking.html -->
+{% extends "base.html" %}
+
+{% block title %}Booking - Online Library{% endblock %}
+
+{% block content %}
+<h2>Book a Library Slot</h2>
+<form action="/booking" method="POST">
+    <label for="name">Your Name:</label>
+    <input type="text" name="name" required><br>
+
+    <label for="book">Book Title:</label>
+    <input type="text" name="book" required><br>
+
+    <button type="submit">Book Now</button>
+</form>
+{% endblock %}

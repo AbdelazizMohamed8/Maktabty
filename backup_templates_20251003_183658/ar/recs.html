@@ -1,0 +1,10 @@
+﻿{% extends "ar/base.html" %}
+{% block title %}Recommendations{% endblock %}
+{% block content %}
+  <h2>ظƒطھط¨ ظ…ظˆطµظ‰ ط¨ظ‡ط§</h2>
+  <ul>
+    {% for r in recs %}
+      <li>{{ r.title }} â€” {{ r.author }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

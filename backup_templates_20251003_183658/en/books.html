@@ -1,0 +1,16 @@
+﻿{% extends "en/base.html" %}
+{% block title %}Books{% endblock %}
+{% block content %}
+  <h2>ط§ظ„ظƒطھط¨ ط§ظ„ظ…طھط§ط­ط©</h2>
+  <ul>
+    {% for b in books %}
+      <li>
+        <strong>{{ b.title }}</strong> â€” {{ b.author }} â€” ظ†ط³ط®: {{ b.copies }}
+        <form method='post' action='{{ url_for('reserve', book_id=b.id) }}' style='display:inline'>
+          <button type='submit'>ط§ط­ط¬ط²</button>
+        </form>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
+
