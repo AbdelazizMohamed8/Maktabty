@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}My Bookings{% endblock %}
+{% block content %}
+  <h2>حجوزاتي</h2>
+  <ul>
+    {% for bk in bookings %}
+      <li>{{ bk.book.title }} — الحالة: {{ bk.status }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
