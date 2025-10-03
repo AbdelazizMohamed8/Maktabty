@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}مكتبتي{% endblock %}</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <header>
+    <nav style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:#2c3e50;color:#fff;">
+      <div style="font-weight:bold;font-size:20px;">
+        <img src="{{ url_for('static', filename='images/image.png') }}" width="30" style="vertical-align:middle;margin-left:8px">
+        مكتبتي
+      </div>
+      <div>
+        <a href="{{ url_for('home') }}" style="color:#fff;margin-right:10px;text-decoration:none;">الرئيسية</a>  
+        <a href="{{ url_for('books') }}" style="color:#fff;margin-right:10px;text-decoration:none;">الكتب</a>
+        <a href="{{ url_for('my_bookings') }}" style="color:#fff;margin-right:10px;text-decoration:none;">حجوزاتي</a>
+        <a href="{{ url_for('recs') }}" style="color:#fff;margin-right:10px;text-decoration:none;">توصيات</a>
+        {% if user %}
+          <span style="margin-right:12px;color:#bdc3c7;">مرحبا، {{ user.username }}</span>
+          <a href="{{ url_for('logout') }}" style="color:#fff;margin-right:10px;text-decoration:none;">تسجيل الخروج</a>
+        {% else %}
+          <a href="{{ url_for('login') }}" style="color:#fff;margin-right:10px;text-decoration:none;">تسجيل الدخول</a>
+          <a href="{{ url_for('register') }}" style="color:#fff;margin-right:10px;text-decoration:none;">إنشاء حساب</a>
+        {% endif %}
+        <span style="margin-right:12px;">
+          <a href="{{ url_for('set_language', lang='en') }}" style="color:#fff;text-decoration:none;">English</a> |
+          <a href="{{ url_for('set_language', lang='ar') }}" style="color:#fff;text-decoration:none;">عربي</a>
+        </span>
+      </div>
+    </nav>
+  </header>
+
+  <main style="padding:20px;">
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul style="color:green;">
+          {% for m in messages %}
+            <li>{{ m }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer style="text-align:center;padding:12px;background:#2c3e50;color:#fff;margin-top:30px;">
+    &copy; {{ now().year if now is defined else '2025' }} مكتبتي
+  </footer>
+</body>
+</html>

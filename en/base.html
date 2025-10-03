@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}Maktabty{% endblock %}</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <header>
+    <nav style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:#2c3e50;color:#fff;">
+      <div style="font-weight:bold;font-size:20px;">
+        <img src="{{ url_for('static', filename='images/image.png') }}" width="30" style="vertical-align:middle;margin-right:8px">
+        Maktabty
+      </div>
+      <div>
+        <a href="{{ url_for('home') }}" style="color:#fff;margin-left:10px;text-decoration:none;">Home</a>  
+        <a href="{{ url_for('books') }}" style="color:#fff;margin-left:10px;text-decoration:none;">Books</a>
+        <a href="{{ url_for('my_bookings') }}" style="color:#fff;margin-left:10px;text-decoration:none;">My Bookings</a>
+        <a href="{{ url_for('recs') }}" style="color:#fff;margin-left:10px;text-decoration:none;">Recommendations</a>
+        {% if user %}
+          <span style="margin-left:12px;color:#bdc3c7;">Welcome, {{ user.username }}</span>
+          <a href="{{ url_for('logout') }}" style="color:#fff;margin-left:10px;text-decoration:none;">Logout</a>
+        {% else %}
+          <a href="{{ url_for('login') }}" style="color:#fff;margin-left:10px;text-decoration:none;">Login</a>
+          <a href="{{ url_for('register') }}" style="color:#fff;margin-left:10px;text-decoration:none;">Register</a>
+        {% endif %}
+        <span style="margin-left:12px;">
+          <a href="{{ url_for('set_language', lang='en') }}" style="color:#fff;text-decoration:none;">English</a> |
+          <a href="{{ url_for('set_language', lang='ar') }}" style="color:#fff;text-decoration:none;">عربي</a>
+        </span>
+      </div>
+    </nav>
+  </header>
+
+  <main style="padding:20px;">
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul style="color:green;">
+          {% for m in messages %}
+            <li>{{ m }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer style="text-align:center;padding:12px;background:#2c3e50;color:#fff;margin-top:30px;">
+    &copy; {{ now().year if now is defined else '2025' }} Maktabty
+  </footer>
+</body>
+</html>
