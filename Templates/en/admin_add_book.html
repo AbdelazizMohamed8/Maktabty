@@ -1,0 +1,12 @@
+﻿{% extends 'en/base.html' %}
+{% block title %}Add Book{% endblock %}
+{% block content %}
+  <h2>Add New Book</h2>
+  <form method='post' enctype='multipart/form-data'>
+    <label>Title: <input name='title' required></label><br><br>
+    <label>Author: <input name='author'></label><br><br>
+    <label>Copies: <input type='number' name='copies' value='1' min='1'></label><br><br>
+    <label>Book Image: <input type='file' name='image'></label><br><br>
+    <button type='submit'>Add Book</button>
+  </form>
+{% endblock %}

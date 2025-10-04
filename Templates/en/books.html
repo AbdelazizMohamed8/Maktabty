@@ -1,0 +1,20 @@
+﻿{% extends 'en/base.html' %}
+{% block title %}Books{% endblock %}
+{% block content %}
+  <h2>Available Books</h2>
+  <ul>
+    {% for b in books %}
+      <li>
+        <img src="{{ url_for('static', filename='images/' ~ b.image_filename) }}" width="50" style="vertical-align:middle;margin-right:5px">
+        <strong>{{ b.title }}</strong> — {{ b.author }} — copies: {{ b.copies }}
+        <form method='post' action='{{ url_for("reserve", book_id=b.id) }}' style='display:inline'>
+          <button type='submit'>Reserve</button>
+        </form>
+      </li>
+    {% else %}
+      <li>No books available yet.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
+
+
